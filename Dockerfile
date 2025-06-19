@@ -1,19 +1,14 @@
-# PHP 8.1 image-ni olamiz
-FROM php:8.1-cli
+# Apache bilan PHP
+FROM php:8.2-apache
 
-# cURL extension zarur bo‘ladi
+# Apache config uchun rewrite moduli
+RUN a2enmod rewrite
+
+# Loyihani Apache rootga ko‘chiramiz
+COPY . /var/www/html/
+
+# PHP extension (agar kerak bo‘lsa)
 RUN docker-php-ext-install pdo pdo_mysql
 
-# cURL va boshqa utilitlarni o‘rnatamiz
-RUN apt-get update && apt-get install -y \
-    curl \
-    unzip
-
-# Loyihani konteynerga nusxalaymiz
-COPY . /app
-
-# Loyihani ishchi katalog sifatida belgilaymiz
-WORKDIR /app
-
-# Boshlanish komandasi
-CMD ["php", "index.php"]
+# Apache avtomatik 80-portni ochadi
+EXPOSE 80
