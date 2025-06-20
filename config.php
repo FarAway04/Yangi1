@@ -1,12 +1,12 @@
 <?php
-// Bot token
-define('API_TOKEN', 'TOKENINGNI_BU_YERGA_QO‘Y');
+// Bot token - Render environment'dan oladi
+define('API_TOKEN', getenv('API_TOKEN'));
 
 // Bazaga ulanish (MySQL misol uchun)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bot_db";
+$servername = getenv('DB_SERVER');
+$username = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
+$dbname = getenv('DB_NAME');
 
 try {
     $db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
