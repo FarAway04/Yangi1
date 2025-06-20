@@ -1,17 +1,14 @@
 <?php
-// 🔑 Bot token — Render environment'dan oladi
 define('API_TOKEN', getenv('API_TOKEN'));
 
-// 🔑 PostgreSQL uchun o‘zgaruvchilar
-$host = getenv('DB_HOST');
-$port = getenv('DB_PORT');
-$dbname = getenv('DB_NAME');
-$user = getenv('DB_USER');
-$password = getenv('DB_PASSWORD');
+$servername = getenv('DB_HOST');   // ✅ HOST
+$username = getenv('DB_USER');     // ✅ USERNAME
+$password = getenv('DB_PASSWORD'); // ✅ PASSWORD
+$dbname = getenv('DB_NAME');       // ✅ DB NAME
+$port = getenv('DB_PORT');         // ✅ PORT
 
-// 🔑 Bazaga ulanish (PostgreSQL DSN)
 try {
-    $db = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $password);
+    $db = new PDO("pgsql:host=$servername;port=$port;dbname=$dbname", $username, $password);
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
