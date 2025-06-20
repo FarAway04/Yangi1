@@ -1,7 +1,16 @@
 <?php
-define("API_TOKEN", getenv("API_TOKEN") ?: "TOKEN_HERE");
-define("DB_SERVER", getenv("DB_SERVER") ?: "localhost");
-define("DB_USERNAME", getenv("DB_USERNAME") ?: "root");
-define("DB_PASSWORD", getenv("DB_PASSWORD") ?: "");
-define("DB_NAME", getenv("DB_NAME") ?: "bot_db");
+// Bot token
+define('API_TOKEN', 'TOKENINGNI_BU_YERGA_QO‘Y');
+
+// Bazaga ulanish (MySQL misol uchun)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bot_db";
+
+try {
+    $db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 ?>
