@@ -1,15 +1,15 @@
 <?php
 define('API_TOKEN', getenv('API_TOKEN'));
 
-$servername = getenv('DB_HOST');   // ✅ HOST
-$username = getenv('DB_USER');     // ✅ USERNAME
-$password = getenv('DB_PASSWORD'); // ✅ PASSWORD
-$dbname = getenv('DB_NAME');       // ✅ DB NAME
-$port = getenv('DB_PORT');         // ✅ PORT
+$host = getenv('DB_HOST');
+$dbname = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASSWORD');
+$port = getenv('DB_PORT');
 
 try {
-    $db = new PDO("pgsql:host=$servername;port=$port;dbname=$dbname", $username, $password);
+    $db = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
 } catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    exit("DB ERROR: " . $e->getMessage());
 }
 ?>
